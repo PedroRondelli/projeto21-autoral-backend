@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "outDir": "./built",
+      "esModuleInterop": true,
+      "module": "ES6",
+      "moduleResolution": "node"
+    },
+    "ts-node": {
+        "esm": true
+    }
+  }
