@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "outDir": "./built",
+      "outDir": "dist",
       "esModuleInterop": true,
       "module": "ES6",
       "moduleResolution": "node"
