@@ -6,7 +6,7 @@ function authLoginMiddleware(req: Request, res: Response, next: NextFunction) {
   const validation = signInSchema.validate(body, { abortEarly: false });
 
   if (validation.error) {
-    res.status(400).send(validation.error.details);
+   return res.status(400).send(validation.error.details);
   }
 
   next();
