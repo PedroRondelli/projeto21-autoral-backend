@@ -28,7 +28,7 @@ async function login(credentials: loginCredentials) {
       throw incompatibilityError();
     }
   } catch (error) {
-    console.log(error);
+    throw error
   }
 }
 
