@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { signInSchema } from "../schemas/auth.schemas";
+import { signInSchema } from "../schemas/auth.schemas.js";
 
 function authLoginMiddleware(req: Request, res: Response, next: NextFunction) {
   const { body } = req;

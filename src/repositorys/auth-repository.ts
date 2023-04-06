@@ -1,4 +1,4 @@
-import { connectionDB } from "../database/db";
+import { connectionDB } from "../database/db.js";
 import { loginCredentials } from "../protocols";
 
 function login(credentials: loginCredentials) {
