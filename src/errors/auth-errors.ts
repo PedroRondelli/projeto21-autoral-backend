@@ -6,3 +6,10 @@ export function incompatibilityError():ApplicationError{
         message:"Email ou Senha incorretos"
     }
 }
+
+export function userAlreadyExist():ApplicationError{
+    return {
+        name:"User already exist",
+        message:"Email já cadastrado"
+    }
+}
