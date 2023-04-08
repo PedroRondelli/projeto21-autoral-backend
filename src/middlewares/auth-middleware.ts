@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { signInSchema } from "../schemas/auth.schemas.js";
+import { signInSchema, signUpSchema } from "../schemas/auth.schemas.js";
 
 function authLoginMiddleware(req: Request, res: Response, next: NextFunction) {
   const { body } = req;
@@ -12,6 +12,19 @@ function authLoginMiddleware(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
+function authRegistrationMiddleware(req: Request, res: Response, next: NextFunction){
+  const { body } = req;
+
+  const validation = signUpSchema.validate(body, { abortEarly: false });
+
+  if (validation.error) {
+   return res.status(400).send(validation.error.details);
+  }
+
+  next();
+}
+
 export const authMiddlewares = {
   authLoginMiddleware,
+  authRegistrationMiddleware
 };

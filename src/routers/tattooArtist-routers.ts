@@ -10,4 +10,6 @@ tattooArtistRouters.post(
   tattoArtistControllers.signin
 );
 
+tattooArtistRouters.post("/registration",authMiddlewares.authRegistrationMiddleware)
+
 export default tattooArtistRouters;
