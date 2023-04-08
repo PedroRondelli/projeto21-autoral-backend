@@ -19,7 +19,7 @@ async function signup(req: Request, res: Response) {
 
   try {
      await authServices.registration(credentials);
-     return res.status(200)
+     return res.sendStatus(200)
   } catch (error) {
     res.status(400).send(error.message);
   }
