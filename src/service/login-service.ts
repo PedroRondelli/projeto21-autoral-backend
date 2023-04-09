@@ -23,10 +23,10 @@ async function login(credentials: loginCredentials) {
       if (!passwordIsCorrect) {
         throw incompatibilityError();
       }
-      let userID = result.rows[0].id;
+      let userId = result.rows[0].id;
       let secretKey = process.env.JWT_SECRET_KEY;
 
-      return jwt.sign({ userID }, secretKey);
+      return jwt.sign({ userId }, secretKey);
     } else {
       throw incompatibilityError();
     }

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { authServices } from "../service/login-service.js";
 import { Profile, Registration, loginCredentials } from "../protocols";
+import { profileService } from "../service/profile-service.js";
 
 async function signin(req: Request, res: Response) {
   const credentials = req.body as loginCredentials;
@@ -27,8 +28,10 @@ async function signup(req: Request, res: Response) {
 
 async function editProfile(req: Request, res: Response) {
   const profile = req.body as Profile;
+  const authorization = req.headers.authorization
 
   try {
+    profileService.editProfile(profile,authorization)
     return res.sendStatus(200);
   } catch (error) {
     res.status(400).send(error.message);

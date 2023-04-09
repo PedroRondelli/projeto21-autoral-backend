@@ -1,15 +1,22 @@
 import { ApplicationError } from "../protocols";
 
-export function incompatibilityError():ApplicationError{
-    return {
-        name:"Incompatibility Error",
-        message:"Email ou Senha incorretos"
-    }
+export function incompatibilityError(): ApplicationError {
+  return {
+    name: "Incompatibility Error",
+    message: "Email ou Senha incorretos",
+  };
 }
 
-export function userAlreadyExist():ApplicationError{
-    return {
-        name:"User already exist",
-        message:"Email já cadastrado"
-    }
+export function userAlreadyExist(): ApplicationError {
+  return {
+    name: "User already exist",
+    message: "Email já cadastrado",
+  };
+}
+
+export function invalidTokenError(): ApplicationError {
+  return {
+    name: "Invalid Token",
+    message: "Token invalido",
+  };
 }

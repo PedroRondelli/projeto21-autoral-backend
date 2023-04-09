@@ -1,11 +1,25 @@
+import { invalidTokenError } from "../errors/auth-errors.js";
 import { Profile } from "../protocols";
-import { profileRepository } from "../repositorys/profile-repository";
+import { profileRepository } from "../repositorys/profile-repository.js";
+import dotenv from "dotenv";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
-async function editProfile(profile:Profile) {
+dotenv.config();
 
-    try {
-        // const profileEdited= await profileRepository.editProfile(profile,)
-    } catch (error) {
-        throw error
-    }
+async function editProfile(profile: Profile, authorization: string) {
+  const token = authorization.replace("Bearer ", "");
+  const verify = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  if (!verify) {
+    throw invalidTokenError();
+  }
+
+  try {
+    // const profileEdited = await profileRepository.editProfile(profile, verify);
+  } catch (error) {
+    throw error;
+  }
 }
+
+export const profileService = {
+  editProfile,
+};
