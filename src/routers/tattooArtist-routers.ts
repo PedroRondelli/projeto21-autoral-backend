@@ -11,5 +11,6 @@ tattooArtistRouters.post(
 );
 
 tattooArtistRouters.post("/registration",authMiddlewares.authRegistrationMiddleware,tattoArtistControllers.signup)
+tattooArtistRouters.post("/profile",tattoArtistControllers.editProfile)
 
 export default tattooArtistRouters;

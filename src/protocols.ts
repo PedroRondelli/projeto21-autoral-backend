@@ -15,3 +15,11 @@ export type Registration = {
   password: string;
   confirmation: string;
 };
+
+export type Profile = {
+  name: string;
+  nickname: string;
+  about: string;
+  specialties: string;
+  thank: string;
+};
