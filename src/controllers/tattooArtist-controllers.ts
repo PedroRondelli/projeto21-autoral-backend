@@ -31,7 +31,7 @@ async function editProfile(req: Request, res: Response) {
   const authorization = req.headers.authorization
 
   try {
-    profileService.editProfile(profile,authorization)
+    await profileService.editProfile(profile,authorization)
     return res.sendStatus(200);
   } catch (error) {
     res.status(400).send(error.message);
