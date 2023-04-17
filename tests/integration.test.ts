@@ -62,22 +62,96 @@ describe("POST /registration", () => {
     expect(result.status).toBe(400);
   });
   it("Should respond with status 400 when user already exist", async () => {
-    await server
-      .post("/tattoArtist/registration")
-      .send({
-        email: "pedrorondelli@hotmail.com",
-        password: "123456",
-        confirmation: "123456",
-      });
+    await server.post("/tattoArtist/registration").send({
+      email: "pedrorondelli@hotmail.com",
+      password: "123456",
+      confirmation: "123456",
+    });
 
-    const result = await server
-      .post("/tattoArtist/registration")
-      .send({
-        email: "pedrorondelli@hotmail.com",
-        password: "123456",
-        confirmation: "123456",
-      });
+    const result = await server.post("/tattoArtist/registration").send({
+      email: "pedrorondelli@hotmail.com",
+      password: "123456",
+      confirmation: "123456",
+    });
     expect(result.status).toBe(400);
     expect(result.text).toBe("Email já cadastrado");
+  });
+});
+
+describe("POST /profile", () => {
+  it("Should respond with status 200", async () => {
+    await server.post("/tattoArtist/registration").send({
+      email: "pedrorondelli@hotmail.com",
+      password: "123456",
+      confirmation: "123456",
+    });
+    const result = await server
+      .post("/tattoArtist/login")
+      .send({ email: "pedrorondelli@hotmail.com", password: "123456" });
+
+    const result2 = await server
+      .post("/tattoArtist/profile")
+      .send({
+        name: "Pedro",
+        nickname: "RD",
+        about: "Vascaino",
+        specialties: "preto e cinza",
+        thank: "Vlw por me escolher!",
+      })
+      .set("Authorization", `Bearer ${result.text}`);
+
+    expect(result2.status).toBe(200);
+  });
+
+  it("Should respond with status 400 when token is not passed", async () => {
+    await server.post("/tattoArtist/registration").send({
+      email: "pedrorondelli@hotmail.com",
+      password: "123456",
+      confirmation: "123456",
+    });
+    const result = await server
+      .post("/tattoArtist/login")
+      .send({ email: "pedrorondelli@hotmail.com", password: "123456" });
+
+    const result2 = await server.post("/tattoArtist/profile").send({
+      name: "Pedro",
+      nickname: "RD",
+      about: "Vascaino",
+      specialties: "preto e cinza",
+      thank: "Vlw por me escolher!",
+    });
+    expect(result2.status).toBe(400);
+  });
+  it("Should response with status 200 when the profile is updated", async () => {
+    await server.post("/tattoArtist/registration").send({
+      email: "pedrorondelli@hotmail.com",
+      password: "123456",
+      confirmation: "123456",
+    });
+    const result = await server
+      .post("/tattoArtist/login")
+      .send({ email: "pedrorondelli@hotmail.com", password: "123456" });
+
+    await server
+      .post("/tattoArtist/profile")
+      .send({
+        name: "Pedro",
+        nickname: "RD",
+        about: "Vascaino",
+        specialties: "preto e cinza",
+        thank: "Vlw por me escolher!",
+      })
+      .set("Authorization", `Bearer ${result.text}`);
+    const result2 = await server
+      .post("/tattoArtist/profile")
+      .send({
+        name: "Ricardo",
+        nickname: "RD",
+        about: "Vascaino",
+        specialties: "preto e cinza",
+        thank: "Vlw por me escolher!",
+      })
+      .set("Authorization", `Bearer ${result.text}`);
+    expect(result2.status).toBe(200);
   });
 });
