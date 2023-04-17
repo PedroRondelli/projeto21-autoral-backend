@@ -2,9 +2,9 @@ import { QueryResult } from "pg";
 import {
   incompatibilityError,
   userAlreadyExist,
-} from "../errors/auth-errors.js";
+} from "../errors/auth-errors";
 import { Registration, loginCredentials, userType } from "../protocols";
-import { authRepository } from "../repositorys/auth-repository.js";
+import { authRepository } from "../repositorys/auth-repository";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";

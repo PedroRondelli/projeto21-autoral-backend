@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { authServices } from "../service/login-service.js";
+import { authServices } from "../service/login-service";
 import { Profile, Registration, loginCredentials } from "../protocols";
-import { profileService } from "../service/profile-service.js";
+import { profileService } from "../service/profile-service";
 
 async function signin(req: Request, res: Response) {
   const credentials = req.body as loginCredentials;

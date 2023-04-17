@@ -1,4 +1,4 @@
-import { connectionDB } from "../database/db.js";
+import { connectionDB } from "../database/db";
 import { Profile } from "../protocols";
 
 function editProfile(profile: Profile, verified: any) {

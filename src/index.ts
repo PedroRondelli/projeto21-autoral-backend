@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import tattooArtistRouters from "./routers/tattooArtist-routers.js";
+import tattooArtistRouters from "./routers/tattooArtist-routers";
 
 dotenv.config();
 const app = express();

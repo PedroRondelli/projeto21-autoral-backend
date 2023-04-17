@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { tattoArtistControllers } from "../controllers/tattooArtist-controllers.js";
-import { authMiddlewares } from "../middlewares/auth-middleware.js";
+import { tattoArtistControllers } from "../controllers/tattooArtist-controllers";
+import { authMiddlewares } from "../middlewares/auth-middleware";
 
 const tattooArtistRouters = Router();
 
