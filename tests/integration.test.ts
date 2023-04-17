@@ -38,7 +38,7 @@ describe("POST /login", () => {
     const result = await server
       .post("/tattoArtist/login")
       .send({ email: "pedrorondelli@hotmail.com", password: "123456" });
-    console.log(result.text);
+    
     expect(result.status).toBe(400);
     expect(result.text).toBe("Email ou Senha incorretos");
   });
