@@ -11,9 +11,14 @@ async function signin(req: Request, res: Response) {
 
     return res.status(200).send(token);
   } catch (error) {
-    res.status(400).send(error.message);
+    if (error.name==="Incompatibility Error") {
+      return res.status(401).send(error.message)
+    }else {
+      return res.status(500).send(error.message)
+    }
   }
 }
+
 
 async function signup(req: Request, res: Response) {
   const credentials = req.body as Registration;

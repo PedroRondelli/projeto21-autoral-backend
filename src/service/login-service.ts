@@ -1,8 +1,5 @@
 import { QueryResult } from "pg";
-import {
-  incompatibilityError,
-  userAlreadyExist,
-} from "../errors/auth-errors";
+import { incompatibilityError, userAlreadyExist } from "../errors/auth-errors";
 import { Registration, loginCredentials, userType } from "../protocols";
 import { authRepository } from "../repositorys/auth-repository";
 import jwt from "jsonwebtoken";
@@ -15,7 +12,7 @@ async function login(credentials: loginCredentials) {
     const result: QueryResult<userType> = await authRepository.checkIfUserExist(
       credentials.email
     );
-    if (result.rowCount !== 0) {
+    if (result.rowCount === 1) {
       const passwordIsCorrect = bcrypt.compareSync(
         credentials.password,
         result.rows[0].password
@@ -23,10 +20,9 @@ async function login(credentials: loginCredentials) {
       if (!passwordIsCorrect) {
         throw incompatibilityError();
       }
-      let userId = result.rows[0].id;
-      let secretKey = process.env.JWT_SECRET_KEY;
+      const userId = result.rows[0].id;
 
-      return jwt.sign({ userId }, secretKey);
+      return jwt.sign({ userId }, process.env.JWT_SECRET_KEY);
     } else {
       throw incompatibilityError();
     }
@@ -42,9 +38,10 @@ async function registration(credentials: Registration) {
     );
     if (result.rowCount !== 0) {
       throw userAlreadyExist();
+    } else {
+      const hashedPassword = bcrypt.hashSync(credentials.password, 10);
+      await authRepository.insertOneUser(credentials.email, hashedPassword);
     }
-    const hashedPassword = bcrypt.hashSync(credentials.password, 10);
-    await authRepository.insertOneUser(credentials.email, hashedPassword);
   } catch (error) {
     throw error;
   }
