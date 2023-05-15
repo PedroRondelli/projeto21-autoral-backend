@@ -7,23 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
-model profileInformations {
-  id                  Int                   @id(map: "profileInformations_pk") @default(autoincrement())
+model profile {
   name        String
   nickname    String
   description String
   specialties String
   thank       String
   userId      Int
+  id          Int    @id(map: "profileInformations_pk") @default(autoincrement())
   users       users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "profileInformations_fk0")
-
-  @@ignore
 }
 
 model users {
-  id                  Int                   @id(map: "users_pk") @default(autoincrement())
-  email               String
-  password            String
-  profileInformations profileInformations[] @ignore
+  id       Int       @id(map: "users_pk") @default(autoincrement())
+  email    String
+  password String
+  profile  profile[]
 }
