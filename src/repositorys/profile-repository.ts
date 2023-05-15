@@ -1,4 +1,4 @@
-import { connectionDB } from "../database/db";
+import { connectionDB, prisma } from "../database/db";
 import { Profile } from "../protocols";
 
 function editProfile(profile: Profile, verified: any) {
@@ -18,10 +18,8 @@ function editProfile(profile: Profile, verified: any) {
 
 function checkIfProfileExist(verified: any) {
   const { userId } = verified;
-  return connectionDB.query(
-    'SELECT * FROM "profileInformations" WHERE "userId"=$1',
-    [userId]
-  );
+
+  return prisma.profile.findFirst({ where: { userId } });
 }
 
 function updateProfile(profile: Profile, verified: any) {

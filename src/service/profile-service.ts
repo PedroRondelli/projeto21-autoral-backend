@@ -14,8 +14,8 @@ async function editProfile(profile: Profile, authorization: string) {
   }
 
   try {
-    const result = await profileRepository.checkIfProfileExist(verify);
-    if (result.rowCount !== 0) {
+    const existingProfile = await profileRepository.checkIfProfileExist(verify);
+    if (existingProfile) {
       await profileRepository.updateProfile(profile, verify);
     } else {
       await profileRepository.editProfile(profile, verify);

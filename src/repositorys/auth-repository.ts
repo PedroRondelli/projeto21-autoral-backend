@@ -1,4 +1,4 @@
-import { connectionDB, prisma } from "../database/db";
+import { prisma } from "../database/db";
 import { loginCredentials } from "../protocols";
 
 function checkIfUserExist(email: string) {
