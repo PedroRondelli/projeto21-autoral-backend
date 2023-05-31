@@ -1,5 +1,4 @@
 import { prisma } from "../database/db";
-import { loginCredentials } from "../protocols";
 
 function checkIfUserExist(email: string) {
   return prisma.users.findFirst({ where: { email: email } });

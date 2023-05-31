@@ -2,7 +2,7 @@ import { invalidTokenError } from "../errors/auth-errors";
 import { Profile } from "../protocols";
 import { profileRepository } from "../repositorys/profile-repository";
 import dotenv from "dotenv";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 

@@ -1,19 +1,18 @@
-import { connectionDB, prisma } from "../database/db";
+import { prisma } from "../database/db";
 import { Profile } from "../protocols";
 
 function editProfile(profile: Profile, verified: any) {
   const { userId } = verified;
-  return connectionDB.query(
-    'INSERT INTO "profileInformations"(name,nickname,description,specialties,thank,"userId") VALUES($1,$2,$3,$4,$5,$6)',
-    [
-      profile.name,
-      profile.nickname,
-      profile.about,
-      profile.specialties,
-      profile.thank,
-      userId,
-    ]
-  );
+  return prisma.profile.create({
+    data: {
+      name: profile.name,
+      nickname: profile.nickname,
+      description: profile.about,
+      specialties: profile.specialties,
+      thank: profile.thank,
+      userId: userId,
+    },
+  });
 }
 
 function checkIfProfileExist(verified: any) {
@@ -24,17 +23,17 @@ function checkIfProfileExist(verified: any) {
 
 function updateProfile(profile: Profile, verified: any) {
   const { userId } = verified;
-  return connectionDB.query(
-    'UPDATE "profileInformations" SET name=$1,nickname=$2,description=$3,specialties=$4,thank=$5 WHERE "userId"=$6',
-    [
-      profile.name,
-      profile.nickname,
-      profile.about,
-      profile.specialties,
-      profile.thank,
-      userId,
-    ]
-  );
+  
+  return prisma.profile.updateMany({
+    where: { userId },
+    data: {
+      name: profile.name,
+      nickname: profile.nickname,
+      description: profile.about,
+      specialties: profile.specialties,
+      thank: profile.thank,
+    },
+  });
 }
 export const profileRepository = {
   editProfile,
