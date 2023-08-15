@@ -20,7 +20,8 @@ model profile {
 
 model users {
   id       Int       @id(map: "users_pk") @default(autoincrement())
-  email    String
+  email    String    @unique
   password String
+  supaId   String?
   profile  profile[]
 }

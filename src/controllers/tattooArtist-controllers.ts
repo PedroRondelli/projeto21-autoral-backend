@@ -42,11 +42,18 @@ async function editProfile(req: Request, res: Response) {
   }
 }
 
-
+async function saveSupaId(req: Request, res: Response) {
+  const { id, email } = req.body;
+  try {
+    await authServices.saveSupaId(id, email);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export const tattoArtistControllers = {
   signin,
   signup,
   editProfile,
-  
+  saveSupaId,
 };

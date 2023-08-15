@@ -17,4 +17,6 @@ tattooArtistRouters.post(
 );
 tattooArtistRouters.post("/profile", tattoArtistControllers.editProfile);
 
+tattooArtistRouters.patch("/registration",tattoArtistControllers.saveSupaId)
+
 export default tattooArtistRouters;

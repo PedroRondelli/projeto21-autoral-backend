@@ -8,9 +8,7 @@ import dotenv from "dotenv";
 dotenv.config();
 async function login(credentials: loginCredentials) {
   try {
-    const user = await authRepository.checkIfUserExist(
-      credentials.email
-    );
+    const user = await authRepository.checkIfUserExist(credentials.email);
 
     if (user) {
       const passwordIsCorrect = bcrypt.compareSync(
@@ -33,9 +31,7 @@ async function login(credentials: loginCredentials) {
 
 async function registration(credentials: Registration) {
   try {
-    const user = await authRepository.checkIfUserExist(
-      credentials.email
-    );
+    const user = await authRepository.checkIfUserExist(credentials.email);
     if (user) {
       throw userAlreadyExist();
     } else {
@@ -47,7 +43,16 @@ async function registration(credentials: Registration) {
   }
 }
 
+async function saveSupaId(id:string,email:string) {
+  try {
+    await authRepository.saveSupaId(id,email)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const authServices = {
   login,
   registration,
+  saveSupaId,
 };
