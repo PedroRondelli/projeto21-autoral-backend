@@ -4,8 +4,19 @@ services:
     container_name: postgres_container
     restart: always
     env_file:
-     - .env
+      - .env
     ports:
       - 5433:5432
     volumes:
       - pg:/var/lib/postgresql/data
+  rondelli_studio:
+    container_name: rondelli_studio
+    build: .
+    ports: 
+      - 1234:5000
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+volumes:
+  pg:
