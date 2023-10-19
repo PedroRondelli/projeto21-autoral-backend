@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18 as development_stage
 
 WORKDIR /usr/src/app
 
@@ -13,3 +13,6 @@ EXPOSE 5000
 RUN npm run dev
 
 CMD ['node','server.js']
+
+FROM development_stage as production_stage
+
