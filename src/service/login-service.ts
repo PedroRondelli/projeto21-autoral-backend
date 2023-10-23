@@ -20,7 +20,7 @@ async function login(credentials: loginCredentials) {
       }
       const userId = user.id;
 
-      return jwt.sign({ userId }, process.env.JWT_SECRET_KEY);
+      return jwt.sign({ userId }, process.env.JWT_SECRET_KEY as string );
     } else {
       throw incompatibilityError();
     }

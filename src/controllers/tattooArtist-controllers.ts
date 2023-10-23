@@ -32,7 +32,7 @@ async function signup(req: Request, res: Response) {
 
 async function editProfile(req: Request, res: Response) {
   const profile = req.body as Profile;
-  const authorization = req.headers.authorization;
+  const authorization = req.headers.authorization as string;
 
   try {
     await profileService.editProfile(profile, authorization);

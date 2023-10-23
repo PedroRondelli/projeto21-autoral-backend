@@ -8,7 +8,7 @@ dotenv.config();
 
 async function editProfile(profile: Profile, authorization: string) {
   const token = authorization.replace("Bearer ", "");
-  const verify = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  const verify = jwt.verify(token, process.env.JWT_SECRET_KEY as string);
   if (!verify) {
     throw invalidTokenError();
   }

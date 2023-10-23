@@ -6,13 +6,15 @@ COPY package*.json ./
 
 RUN npm i
 
-COPY ..
+COPY . .
+
+RUN npx prisma generate
+
+# RUN npx prisma migrate dev --name init 
 
 EXPOSE 5000
 
-RUN npm run dev
+CMD ["npm","start"]
 
-CMD ['node','server.js']
 
-FROM development_stage as production_stage
 

@@ -3,8 +3,8 @@ services:
     image: postgres
     container_name: postgres_container
     restart: always
-    env_file:
-      - .env
+    environment:
+      POSTGRES_PASSWORD: "123456789"
     ports:
       - 5433:5432
     volumes:
@@ -13,7 +13,7 @@ services:
     container_name: rondelli_studio
     build: .
     ports: 
-      - 1234:5000
+      - 5000:5000
     env_file:
       - .env
     depends_on:
