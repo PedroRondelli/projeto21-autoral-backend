@@ -3,16 +3,17 @@ services:
     image: postgres
     container_name: postgres_container
     restart: always
-    environment:
-      POSTGRES_PASSWORD: "123456789"
+    env_file:
+      - .env
     ports:
-      - 5433:5432
+      - 5432:5432
     volumes:
       - pg:/var/lib/postgresql/data
   rondelli_studio:
     container_name: rondelli_studio
     build: .
-    ports: 
+    command: ["sh", "-c","npx prisma db push && npm run dev"]
+    ports:
       - 5000:5000
     env_file:
       - .env

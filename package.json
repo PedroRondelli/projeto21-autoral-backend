@@ -2,11 +2,11 @@
   "name": "projeto21-autoral-backend",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "start": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts"
+    "start": "node src/index.ts"
   },
   "repository": {
     "type": "git",

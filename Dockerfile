@@ -1,4 +1,4 @@
-FROM node:18 as development_stage
+FROM node:18.18.2
 
 WORKDIR /usr/src/app
 
@@ -10,11 +10,10 @@ COPY . .
 
 RUN npx prisma generate
 
-# RUN npx prisma migrate dev --name init 
 
 EXPOSE 5000
 
-CMD ["npm","start"]
+CMD ["npm","run","dev"]
 
 
 
