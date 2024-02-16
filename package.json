@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "start": "node src/index.ts",
-    "vercel-build": "npx prisma migrate dev --force npx prisma migrate deploy"
+    "vercel-build": "npx prisma migrate dev deploy --force"
   },
   "repository": {
     "type": "git",
