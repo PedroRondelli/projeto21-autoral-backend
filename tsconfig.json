@@ -5,7 +5,4 @@
       "module": "CommonJS",
       "moduleResolution": "node"
     },
-    "ts-node": {
-        "esm": true
-    }
   }
