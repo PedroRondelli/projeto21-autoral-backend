@@ -5,11 +5,11 @@ import { Registration,loginCredentials } from "../protocols";
 function authLoginMiddleware(req: Request, res: Response, next: NextFunction) {
   const  body  = req.body as loginCredentials;
   const validation = signInSchema.validate(body, { abortEarly: false });
-
+  console.log("Middleware login")
   if (validation.error) {
     return res.status(400).send(validation.error.details);
   }
-
+  console.log("passou no middleware")
   next();
 }
 
