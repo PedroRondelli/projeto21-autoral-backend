@@ -5,7 +5,8 @@ import { profileService } from "../service/profile-service";
 
 async function signin(req: Request, res: Response) {
   const credentials = req.body as loginCredentials;
-
+  console.log("entrou no controller");
+  console.log(credentials);
   try {
     const token = await authServices.login(credentials);
 
