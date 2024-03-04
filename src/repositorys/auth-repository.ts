@@ -1,6 +1,7 @@
 import { prisma } from "../database/db";
 
 function checkIfUserExist(email: string) {
+  console.log("checa se o usuário existe")
   return prisma.users.findFirst({ where: { email: email } });
 }
 

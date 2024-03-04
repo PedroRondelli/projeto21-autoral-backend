@@ -9,7 +9,7 @@ dotenv.config();
 async function login(credentials: loginCredentials) {
   try {
     const user = await authRepository.checkIfUserExist(credentials.email);
-
+    console.log("termina consulta ao banco")
     if (user) {
       const passwordIsCorrect = bcrypt.compareSync(
         credentials.password,
