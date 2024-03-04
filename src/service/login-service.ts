@@ -11,6 +11,7 @@ async function login(credentials: loginCredentials) {
     const user = await authRepository.checkIfUserExist(credentials.email);
     console.log("termina consulta ao banco")
     if (user) {
+      console.log("verifica se a senha está correta")
       const passwordIsCorrect = bcrypt.compareSync(
         credentials.password,
         user.password
